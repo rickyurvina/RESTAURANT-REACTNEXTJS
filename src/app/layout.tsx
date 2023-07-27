@@ -2,6 +2,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Sidebar from './components/Sidebar'
+import firebase, { FirebaseContext } from "./firebase";
 
 export const metadata: Metadata = {
   title: 'Restaurant',
@@ -17,11 +18,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='md:flex min-h-screen'>
-        <Sidebar />
-        <div className='md:w-3/5 xl:w-4/5 p-6'>
-          {children}
-        </div>
+        <FirebaseContext.Provider value={{ firebase }}>
+          <Sidebar />
+          <div className='md:w-3/5 xl:w-4/5 p-6'>
+            {children}
+          </div>
+          {/* <script src="http://localhost:8097"></script> */}
+        </FirebaseContext.Provider>
       </body>
     </html>
+
+
   )
 }

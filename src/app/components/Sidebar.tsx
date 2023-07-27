@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function Sidebar() {
-    const router = useRouter()
     const pathname = usePathname()
     return (
         <div className="md:w-2/5 xl:w-1/5 bg-gray-800">

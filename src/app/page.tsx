@@ -1,16 +1,10 @@
-
-'use client'
-import Link
-  from "next/link"
-
 export default function Home() {
 
-
   return (
-    <main className="md:flex">
+    <div className="md:flex">
       <h1>
-        Ordenes
+        Lista de Ordenes
       </h1>
-    </main>
+    </div>
   )
 }
