@@ -5,9 +5,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { FirebaseContext } from '../firebase'
 import { getDatabase, ref, set, child, get, onValue } from "firebase/database";
 import { useRouter } from "next/navigation"
-import { getStorage, ref as refS, getDownloadURL, uploadBytesResumable } from "firebase/storage"
 import Plate from "./plate";
-import { type } from "os";
+
 
 export default function Menu() {
 

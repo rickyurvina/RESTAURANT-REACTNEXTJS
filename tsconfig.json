@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/firebase/firebase.tsx", "src/app/menu/plate.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/firebase/firebase.tsx", "src/app/menu/plate.js", "src/app/components/Orders.js"],
   "exclude": ["node_modules"]
 }

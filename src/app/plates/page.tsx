@@ -6,6 +6,7 @@ import { FirebaseContext } from '../firebase'
 import { getDatabase, ref, set } from "firebase/database";
 import { useRouter } from "next/navigation"
 import { getStorage, ref as refS, getDownloadURL, uploadBytesResumable } from "firebase/storage"
+import { generateId } from "../helpers";
 
 export default function NewPlate() {
 
@@ -13,7 +14,6 @@ export default function NewPlate() {
   const [progressPercent, setProgressPercent] = useState(0);
   const [uploading, setUploading] = useState(false);
   let url = ""
-
 
   const router = useRouter()
   const firebase = useContext(FirebaseContext)
@@ -57,7 +57,7 @@ export default function NewPlate() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log(typeof downloadURL);
-            url=downloadURL
+            url = downloadURL
             setUploading(false);
             console.log('File available at', url);
             console.log("uploadind state", uploading)
@@ -94,6 +94,7 @@ export default function NewPlate() {
 
   const handleAsyncSubmit = async (values) => {
     await handleSubmit();
+    const id = generateId()
     const newPlate = {
       name: values.name,
       price: values.price,
@@ -101,8 +102,9 @@ export default function NewPlate() {
       description: values.description,
       image: url,
       exist: true,
+      id: id
     };
-    set(ref(db, 'plates/' + values.name), newPlate);
+    set(ref(db, 'plates/' + id), newPlate);
     console.log("New plate added");
     router.push('/menu');
   }

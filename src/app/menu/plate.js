@@ -4,16 +4,16 @@ import { getDatabase, ref, set, child, get, onValue, update, push } from "fireba
 
 const Plate = ({ plate }) => {
 
-    const { name, price, category, image, exist, description } = plate
+    const { name, price, category, image, exist, description, id } = plate
 
     const existRef = useRef(exist)
     const firebase = useContext(FirebaseContext)
     const db = getDatabase(firebase.firebase.firebase);
-    const uodateAvailable = () => {
+    const updateAvailable = () => {
         const exist = existRef.current.value === 'true'
         plate.exist = exist
         const updates = {};
-        updates['/plates/' + name] = plate;
+        updates['/plates/' + id] = plate;
         update(ref(db), updates);
     }
 
@@ -33,7 +33,7 @@ const Plate = ({ plate }) => {
                                     value={exist}
                                     ref={existRef}
                                     onChange={() => {
-                                        uodateAvailable()
+                                        updateAvailable()
                                     }}
                                 >
                                     <option value='true' className='text-gray-700'>Available</option>
